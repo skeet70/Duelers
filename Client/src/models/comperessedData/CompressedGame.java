@@ -4,6 +4,7 @@ import models.card.CardType;
 import models.game.CellEffect;
 import models.game.GameType;
 
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
@@ -105,6 +106,11 @@ public class CompressedGame {
             support.firePropertyChange("mp2", player2CurrentMP, maxMP);
             playerTwo.setCurrentMP(player2CurrentMP, turnNumber);
         }
+
+        PropertyChangeEvent evt;
+        support.firePropertyChange(evt.);
+
+
         gameMap.updateCellEffects(cellEffects);
     }
 

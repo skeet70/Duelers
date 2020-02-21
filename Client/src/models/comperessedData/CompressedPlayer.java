@@ -1,6 +1,7 @@
 package models.comperessedData;
 
 import models.card.CardType;
+import server.dataCenter.models.card.Deck;
 import view.BattleView.Constants;
 
 import java.beans.PropertyChangeListener;
@@ -12,6 +13,7 @@ import java.util.List;
 public class CompressedPlayer {
     private String userName;
     private int currentMP;
+    private Deck deck;
     private List<CompressedCard> hand;
     private List<CompressedCard> graveyard;
     private CompressedCard nextCard;
@@ -22,12 +24,13 @@ public class CompressedPlayer {
     private PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     //just for testing BattleView
-    public CompressedPlayer(String userName, int currentMP, ArrayList<CompressedCard> hand,
+    public CompressedPlayer(String userName, int currentMP, ArrayList<CompressedCard> hand, Deck deck,
                             ArrayList<CompressedCard> graveyard, CompressedCard nextCard,
                             int playerNumber, ArrayList<CompressedTroop> troops, CompressedTroop hero) {
         this.userName = userName;
         this.currentMP = currentMP;
         this.hand = hand;
+        this.deck = deck;
         this.graveyard = graveyard;
         this.nextCard = nextCard;
         this.playerNumber = playerNumber;
@@ -142,6 +145,8 @@ public class CompressedPlayer {
         }
         return null;
     }
+
+    public Deck getDeck() {return deck; }
 
     public String getUserName() {
         return userName;

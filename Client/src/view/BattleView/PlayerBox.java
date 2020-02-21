@@ -47,6 +47,7 @@ public class PlayerBox implements PropertyChangeListener {
     private ColorAdjust player2ImageEffect;
     private DefaultLabel player1Name;
     private DefaultLabel player2Name;
+    private DefaultLabel player2HandSize;
 
     PlayerBox(BattleScene battleScene, CompressedGame game) throws Exception {
         this.battleScene = battleScene;
@@ -145,8 +146,18 @@ public class PlayerBox implements PropertyChangeListener {
         player2ImageEffect = new ColorAdjust();
         player1Image.setEffect(player1ImageEffect);
         player2Image.setEffect(player2ImageEffect);
+
+        player2HandSize = new DefaultLabel("Cards In Hand: ", Constants.NAME_FONT, Color.RED, SCREEN_WIDTH - 550 * SCALE, 70 * SCALE);
+
         group.getChildren().addAll(player1Image, player2Image, player1Name, player2Name);
     }
+
+
+    private void updateHandSize() {
+        mpGroup.getChildren().clear();
+        player2HandSize.setText("Cards In Hand: " + player2.getHand().size());
+        mpGroup.getChildren().add(player2HandSize);
+    };
 
     private void updateMP(int maxMP) {
         mpGroup.getChildren().clear();
@@ -213,6 +224,14 @@ public class PlayerBox implements PropertyChangeListener {
                 battleScene.getMapBox().resetSelection();
             });
         }
+        if (evt.getPropertyName().equals("hand")){
+            Platform.runLater(() -> {
+                System.out.println("dsssssss" + player2HandSize.getText());
+                updateHandSize();
+                //battleScene.getPlayerBox().resetSelection();
+            });
+        }
+
         if (evt.getPropertyName().equals("mp2")) {
             Platform.runLater(() -> {
                 updateMP((int) evt.getNewValue());

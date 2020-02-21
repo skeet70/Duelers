@@ -1,6 +1,7 @@
 package server.clientPortal.models.comperessedData;
 
 import server.dataCenter.models.card.Card;
+import server.dataCenter.models.card.Deck;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,16 +10,18 @@ public class CompressedPlayer {
     private String userName;
     private int currentMP;
     private ArrayList<CompressedCard> hand = new ArrayList<>();
+    private Deck deck;
     private ArrayList<CompressedCard> graveyard = new ArrayList<>();
     private CompressedCard nextCard;
     private int playerNumber;
 
-    public CompressedPlayer(String userName, int currentMP, List<Card> hand, List<Card> graveyard,
+    public CompressedPlayer(String userName, int currentMP, List<Card> hand, Deck deck, List<Card> graveyard,
                             Card nextCard, int playerNumber) {
         this.userName = userName;
         this.currentMP = currentMP;
         for (Card card : hand)
             this.hand.add(card.toCompressedCard());
+        this.deck = deck;
         for (Card card : graveyard)
             this.graveyard.add(card.toCompressedCard());
         this.nextCard = nextCard.toCompressedCard();

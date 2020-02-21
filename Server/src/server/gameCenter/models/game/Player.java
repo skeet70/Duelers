@@ -39,7 +39,7 @@ public class Player {
 
     public CompressedPlayer toCompressedPlayer() {
         return new CompressedPlayer(
-                userName, currentMP, hand, graveyard, nextCard, playerNumber);
+                userName, currentMP, hand, deck,  graveyard, nextCard, playerNumber);
     }
 
     public List<Card> getHand() {
